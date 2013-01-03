@@ -1,0 +1,15 @@
+Vytvoreni vykreslovani jedotlivych uzlu. Vcetne pocitani velikosti vlastniho obsahu.
+Zatim jsou podporovany vrcholy, typu box, via, subgraph (zjistit co to vlastne znamena z pohledu BoBoxu).
+Chybi rozmisteni vrcholu bez prekryvani.
+Muze obstarat alg. pro nakresleni? Ne nemuze, nezna totiz velikosti jednotlivych vrcholu, toto znaji poze kontrolery.
+
+Momentalne zapocala prace pro vykresleni a zpracovani hran, nejspise to znamena zmenu struktury,
+jsou totiz treba vsechny vrcholy a vsechny hrany.
+
+U hran to bude trochu slozitejsi, jelikoz se budou casto menit (aspon ty, ktere smeruji do podgrafu).
+U vrcholu si tedy musime pamatovat v+ a v-, pro znazsi vypocteni hran, ktere mame prekrelslit.
+Proto si u hrany musime pamatovat spise cestu (s, v1, v2, ..., v3, t).
+Pro lepsi manipulaci je lepsi oddelit s, t, a drzet si cestu zvlast (muze byt prazdna) {s, [v1,...], t}.
++ Predvypocet cesty pri pridavani hrany
++ Vykreslovani az do prvniho uzavreneho uzlu po ceste.
++ Snadna identifikace hrany pro envelope.
