@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="GraphSharp">
+</Property><Property Name="Solution File" Value="C:\Users\Petr Babicka\Documents\Visual Studio 2010\Projects\BoBoxDebug\GraphSharp\GraphSharp.sln">
+</Property><Property Name="Date" Value="7. listopadu 2012">
+</Property><Property Name="Time" Value="21:49">
+</Property></Properties><Event ErrorLevel="0" Project="GraphSharp" Source="Graph#\GraphSharp.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="GraphSharp" Source="Graph#\GraphSharp.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="GraphSharp.Controls" Source="Graph#.Controls\GraphSharp.Controls.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="GraphSharp.Controls" Source="Graph#.Controls\GraphSharp.Controls.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="GraphSharp.Sample" Source="Graph#.Sample\GraphSharp.Sample.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="GraphSharp.Sample" Source="Graph#.Sample\GraphSharp.Sample.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="GraphSharp.Test" Source="Graph#.Test\GraphSharp.Test.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="GraphSharp.Test" Source="Graph#.Test\GraphSharp.Test.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="GraphSharp.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="GraphSharp.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="GraphSharp" Source="Graph#\GraphSharp.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="GraphSharp.Controls" Source="Graph#.Controls\GraphSharp.Controls.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="GraphSharp.Sample" Source="Graph#.Sample\GraphSharp.Sample.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="GraphSharp.Test" Source="Graph#.Test\GraphSharp.Test.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

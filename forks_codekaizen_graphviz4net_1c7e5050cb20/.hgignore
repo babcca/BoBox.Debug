@@ -1,0 +1,12 @@
+glob:*.user
+glob:*.suo
+glob:*.gpState
+glob:src/Graphviz2Xaml/Dot/AntlrParser/output/*
+glob:*.tokens
+glob:*/bin/*
+glob:*/obj/*
+glob:src-old/*
+glob:src/_ReSharper.Graphviz4Net/*
+glob:lib/graphviz-dlls/*
+glob:*/Bin/*
+glob:tools/antlr-silverlight/src/*

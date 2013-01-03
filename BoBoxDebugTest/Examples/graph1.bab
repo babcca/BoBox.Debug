@@ -1,0 +1,30 @@
+﻿{
+	"count":10,
+	"nodes":
+	[
+		"node":{"Id":1},
+		"subgraph":
+		{
+			"nodes":
+			[
+				"node":{"Id":2},
+				"node":{"Id",3),
+				"subgraph":
+				{
+					"nodes":
+					[
+						"node":{"Id":4},
+						"node":{"Id":5},
+						"node":{"Id":6},
+						"node":{"Id":7}
+					]
+				},
+				"node":{"Id":8}
+			]
+		},		  	
+		"node":{"Id":9}
+	],
+	"edges":
+	[
+	]
+}

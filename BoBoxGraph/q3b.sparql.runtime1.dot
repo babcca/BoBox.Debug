@@ -1,0 +1,33 @@
+digraph G {
+	"1" [ shape=box, label="init_box:1\nfinished:0\fulls:" ];
+	subgraph "clustermain:2" { label="main:2";
+		"3" [ shape=box, label="split_box:3\nfinished:?" ];
+		"15" [ shape=box, label="IndexScan:15\nfinished:0\fulls:0," ];
+		"17" [ shape=box, label="FullTableScan:17\nfinished:0\fulls:0," ];
+		subgraph "clustermain::HashJoin:7" { label="main::HashJoin:7";
+			"11" [ shape=box, label="leftSplitter:11\nfinished:0\fulls:0,0," ];
+			"10" [ shape=box, label="rightSplitter:10\nfinished:0\fulls:0," ];
+			"12" [ shape=box, label="hashJoiner[0/2]:12\nfinished:0\fulls:0,0," ];
+			"13" [ shape=box, label="hashJoiner[1/2]:13\nfinished:0\fulls:0,0," ];
+			"14" [ shape=box, label="join:14\nfinished:0" ];
+		}
+		"16" [ shape=box, label="Filter:16\nfinished:0\fulls:1," ];
+		"6" [ shape=box, label="Select:6\nfinished:0\fulls:0," ];
+	}
+	"18" [ shape=box, label="term_box:18\nfinished:?" ];
+"1" -> "3" [label="1(0)\nfull:0\npushed:1\npulled:0\nclosed:1"];
+"3" -> "15" [label="1(0)\npushed:1\npulled:0"];
+"3" -> "17" [label="1(0)\npushed:1\npulled:0"];
+"15" -> "11" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+"17" -> "16" [label="106(1130)\nfull:1\npushed:114\npulled:0\nclosed:0"];
+"11" -> "12" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+"11" -> "13" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+"16" -> "10" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+"12" -> "14" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+"13" -> "14" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+"10" -> "12" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+"10" -> "13" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+"10" -> "11" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+"14" -> "6" [label="0(0)\npushed:0\npulled:0"];
+"6" -> "18" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+}

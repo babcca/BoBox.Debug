@@ -1,0 +1,24 @@
+digraph G {
+	"1" [ shape=box, label="init_box:1\nfinished:1\fulls:" ];
+	subgraph "clustermain:2" { label="main:2";
+		"3" [ shape=box, label="split_box:3\nfinished:?" ];
+		"14" [ shape=box, label="FullTableScan:14\nfinished:0\fulls:0," ];
+		subgraph "clustermain::SolutionModifierDistinct:7" { label="main::SolutionModifierDistinct:7";
+			"10" [ shape=box, label="splitter:10\nfinished:?" ];
+			"11" [ shape=box, label="sort[0/2]:11\nfinished:0\fulls:0," ];
+			"12" [ shape=box, label="sort[1/2]:12\nfinished:0\fulls:0," ];
+			"13" [ shape=box, label="merge:13\nfinished:0\fulls:0," ];
+		}
+		"6" [ shape=box, label="Select:6\nfinished:0\fulls:0," ];
+	}
+	"15" [ shape=box, label="term_box:15\nfinished:?" ];
+"1" -> "3" [label="1(0)\nfull:0\npushed:1\npulled:0\nclosed:1"];
+"3" -> "14" [label="1(0)\npushed:1\npulled:0"];
+"14" -> "10" [label="30(300)\nfull:0\npushed:30\npulled:0\nclosed:0"];
+"10" -> "11" [label="15(150)\npushed:16\npulled:0"];
+"10" -> "12" [label="16(160)\npushed:16\npulled:0"];
+"11" -> "13" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+"12" -> "13" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+"13" -> "6" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+"6" -> "15" [label="0(0)\nfull:0\npushed:0\npulled:0\nclosed:0"];
+}
