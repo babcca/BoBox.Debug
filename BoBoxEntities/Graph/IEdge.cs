@@ -11,4 +11,10 @@ namespace BoBox.Graph.Interface
         TVertex Source { get; }
         TVertex Destination { get; }
     }
+
+    public interface IPath<out TVertex> : IEdge<TVertex>
+        where TVertex : IVertex
+    {
+        IEnumerable<TVertex> Path { get; }
+    }
 }

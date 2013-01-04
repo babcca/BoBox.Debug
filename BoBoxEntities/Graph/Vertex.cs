@@ -51,5 +51,52 @@ namespace BoBox.Graph
         {
             edgesOut_.Add(to);
         }        
+    
+
+IEnumerable<IVertex<IVertex>>  IVertex<IVertex>.EdgesOut
+{
+	get { throw new NotImplementedException(); }
+}
+
+IEnumerable<IVertex<IVertex>>  IVertex<IVertex>.EdgesIn
+{
+	get { throw new NotImplementedException(); }
+}
+
+IParentGraph<IVertex>  IVertex<IVertex>.ParentGraph
+{
+	  get 
+	{ 
+		throw new NotImplementedException(); 
+	}
+	  set 
+	{ 
+		throw new NotImplementedException(); 
+	}
+}
+
+IParentGraph<IVertex>  IHasParent<IVertex>.ParentGraph
+{
+	  get 
+	{ 
+		throw new NotImplementedException(); 
+	}
+	  set 
+	{ 
+		throw new NotImplementedException(); 
+	}
+}
+
+
+public void  AddInEdge(IVertex<IVertex> sourceVertex)
+{
+ 	throw new NotImplementedException();
+}
+
+
+public void AddOutEdge(IVertex<IVertex> targetVertex)
+{
+    throw new NotImplementedException();
+}
     }
 }

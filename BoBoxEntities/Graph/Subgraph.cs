@@ -11,7 +11,7 @@ namespace BoBox.Graph
     using System.Diagnostics.Contracts;
 
     [DataContract]
-    public class Subgraph : ISubgraph, IType
+    public class Subgraph : ISubgraph, IHasParent<IVertex>, IParentGraph<IVertex>, ISourceTargetGraph<IVertex>, IType
     {
         #region IVertex implementation
         
@@ -113,6 +113,59 @@ namespace BoBox.Graph
             Contract.Requires(vertex != null);
             vertex.ParentGraph = this;
             vertices_.Add(vertex);
+        }
+
+        IParentGraph<IVertex> IHasParent<IVertex>.ParentGraph
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IEnumerable<IVertex> Sources
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public IEnumerable<IVertex> Targets
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public void AddTargetVertex(IVertex source)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddSourceVertex(IVertex target)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        IEnumerable<IVertex<IVertex>> IVertex<IVertex>.EdgesOut
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        IEnumerable<IVertex<IVertex>> IVertex<IVertex>.EdgesIn
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public void AddOutEdge(IVertex<IVertex> targetVertex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddInEdge(IVertex<IVertex> sourceVertex)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -5,21 +5,22 @@ using System.Text;
 
 namespace BoBox.Graph.Interface
 {
-    public interface IVertex
+    public interface IMetaVertex
+    {
+    }
+
+    public interface IVertex : IVertex<Vertex>
+    {
+    }
+
+    public interface IVertex<TSourceTargetVertex> : IHasParent<TSourceTargetVertex>
     {
         Int32 VertexId { get; }
-        bool Visible { get; set; }
-        // Zmena, vsechny vrholy jsou v nejakem podgrafu,
-        // Struktura tedy vypada takto:
-        // Graf drzi podgraf (kontejner), do ktereho vklada veskere vrcholy
+        IEnumerable<IVertex<TSourceTargetVertex>> EdgesOut { get; }
+        IEnumerable<IVertex<TSourceTargetVertex>> EdgesIn { get; }
 
-        //IGraph ParentGraph { get; set; }
-        IGraph ParentGraph { get; set;  }        
-
-        IEnumerable<IVertex> EdgesOut { get; }
-        IEnumerable<IVertex> EdgesIn { get; }        
-
-        void AddOutEdge(IVertex to);
+        void AddOutEdge(IVertex<TSourceTargetVertex> targetVertex);
+        void AddInEdge(IVertex<TSourceTargetVertex> sourceVertex);
     }
 
     public interface IBox : IVertex

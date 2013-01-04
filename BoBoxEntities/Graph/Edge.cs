@@ -7,7 +7,7 @@ using System.Text;
 namespace BoBox.Graph
 {
     using BoBox.Graph.Interface;
-    using System.Runtime.Serialization;
+    using System.Runtime.Serialization;    
 
     [DataContract]
     public class Edge : IEdge<IVertex>
