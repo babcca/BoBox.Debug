@@ -23,18 +23,25 @@ namespace BoBox.Controls
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
             {
                 BoBox.Graph.Graph root = new BoBox.Graph.Graph();
-                root.AddVertex(new BoBox.Graph.Box());
-                
+                var v1 = new BoBox.Graph.Box();
+                root.AddVertex(v1);
+
                 BoBox.Graph.Subgraph s1 = new BoBox.Graph.Subgraph();
-                s1.AddVertex(new BoBox.Graph.Box());
+                var sv1 = new BoBox.Graph.Box();
+                s1.AddVertex(sv1);
                 BoBox.Graph.Subgraph s2 = new BoBox.Graph.Subgraph();
-                s2.AddVertex(new BoBox.Graph.Box());
+                var sv2 = new BoBox.Graph.Box();
+                s2.AddVertex(sv2);
 
                 s1.AddVertex(s2);
 
                 root.AddVertex(s1);
-                root.AddVertex(new BoBox.Graph.Box());
+                var v2 = new BoBox.Graph.Box();
+                root.AddVertex(v2);
                 root.AddVertex(new BoBox.Graph.Via());
+
+                root.AddEdge(v1.VertexId, sv1.VertexId);
+                root.AddEdge(sv1.VertexId, sv2.VertexId);
 
                 
 

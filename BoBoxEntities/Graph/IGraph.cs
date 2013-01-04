@@ -5,26 +5,23 @@ using System.Text;
 
 namespace BoBox.Graph.Interface
 {
-    public interface ISourceTargetGraph<TVertex>
-        where TVertex : IVertex
+    public interface ISourceTargetGraph
     {
-        IEnumerable<TVertex> Sources { get; }
-        IEnumerable<TVertex> Targets { get; }
-        
-        void AddTargetVertex(TVertex source);        
-        void AddSourceVertex(TVertex target);
+        IEnumerable<IVertex> Sources { get; }
+        IEnumerable<IVertex> Targets { get; }
+
+        void AddTargetVertex(IVertex source);
+        void AddSourceVertex(IVertex target);
     }
 
-    public interface IParentGraph<TSourceTargetVertex> : ISourceTargetGraph<TSourceTargetVertex>
-        where TSourceTargetVertex : IVertex
+    public interface IParentGraph : ISourceTargetGraph
     {
         Int32 GraphId { get; }        
     }
 
-    public interface IHasParent<TSourceTargetVertex>
-        where TSourceTargetVertex : IVertex
+    public interface IHasParent
     {
-        IParentGraph<TSourceTargetVertex> ParentGraph { get; set; }
+        IParentGraph ParentGraph { get; set; }
     }
 
 
@@ -33,7 +30,5 @@ namespace BoBox.Graph.Interface
         Int32 GraphId { get; }
         //IEnumerable<IVertex> Vertices { get; }          
         Int32 GraphDeep { get; }
-        IVertex Source { get; }
-        IVertex Target { get; }
     }
 }

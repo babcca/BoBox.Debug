@@ -15,7 +15,7 @@ namespace BoBox.Graph
         private readonly IList<IVertex> edgesIn_ = new List<IVertex>();
         
         [IgnoreDataMember]
-        public IGraph ParentGraph { get; set; }
+        public IParentGraph ParentGraph { get; set; }
 
         [IgnoreDataMember]
         public bool Visible { get; set; }
@@ -47,56 +47,14 @@ namespace BoBox.Graph
             get { return edgesIn_; }
         }
 
-        public void AddOutEdge(IVertex to)
+        public void AddOutEdge(IVertex targetVertex)
         {
-            edgesOut_.Add(to);
+            edgesOut_.Add(targetVertex);
+        }
+
+        public void AddInEdge(IVertex sourceVertex)
+        {
+            edgesIn_.Add(sourceVertex);
         }        
-    
-
-IEnumerable<IVertex<IVertex>>  IVertex<IVertex>.EdgesOut
-{
-	get { throw new NotImplementedException(); }
-}
-
-IEnumerable<IVertex<IVertex>>  IVertex<IVertex>.EdgesIn
-{
-	get { throw new NotImplementedException(); }
-}
-
-IParentGraph<IVertex>  IVertex<IVertex>.ParentGraph
-{
-	  get 
-	{ 
-		throw new NotImplementedException(); 
-	}
-	  set 
-	{ 
-		throw new NotImplementedException(); 
-	}
-}
-
-IParentGraph<IVertex>  IHasParent<IVertex>.ParentGraph
-{
-	  get 
-	{ 
-		throw new NotImplementedException(); 
-	}
-	  set 
-	{ 
-		throw new NotImplementedException(); 
-	}
-}
-
-
-public void  AddInEdge(IVertex<IVertex> sourceVertex)
-{
- 	throw new NotImplementedException();
-}
-
-
-public void AddOutEdge(IVertex<IVertex> targetVertex)
-{
-    throw new NotImplementedException();
-}
     }
 }

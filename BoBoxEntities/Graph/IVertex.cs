@@ -5,22 +5,15 @@ using System.Text;
 
 namespace BoBox.Graph.Interface
 {
-    public interface IMetaVertex
-    {
-    }
 
-    public interface IVertex : IVertex<Vertex>
-    {
-    }
-
-    public interface IVertex<TSourceTargetVertex> : IHasParent<TSourceTargetVertex>
+    public interface IVertex: IHasParent        
     {
         Int32 VertexId { get; }
-        IEnumerable<IVertex<TSourceTargetVertex>> EdgesOut { get; }
-        IEnumerable<IVertex<TSourceTargetVertex>> EdgesIn { get; }
+        IEnumerable<IVertex> EdgesOut { get; }
+        IEnumerable<IVertex> EdgesIn { get; }
 
-        void AddOutEdge(IVertex<TSourceTargetVertex> targetVertex);
-        void AddInEdge(IVertex<TSourceTargetVertex> sourceVertex);
+        void AddOutEdge(IVertex targetVertex);
+        void AddInEdge(IVertex sourceVertex);
     }
 
     public interface IBox : IVertex

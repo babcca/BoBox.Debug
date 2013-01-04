@@ -28,9 +28,11 @@ namespace BoBox.Debug.Main
             root.AddVertex(v1);
 
             BoBox.Graph.Subgraph s1 = new BoBox.Graph.Subgraph();
-            s1.AddVertex(new BoBox.Graph.Box());
+            var sv1 = new BoBox.Graph.Box();
+            s1.AddVertex(sv1);
             BoBox.Graph.Subgraph s2 = new BoBox.Graph.Subgraph();
-            s2.AddVertex(new BoBox.Graph.Box());
+            var sv2 = new BoBox.Graph.Box();
+            s2.AddVertex(sv2);
 
             s1.AddVertex(s2);
 
@@ -39,8 +41,9 @@ namespace BoBox.Debug.Main
             root.AddVertex(v2);
             root.AddVertex(new BoBox.Graph.Via());
 
-            root.AddEdge(v1.VertexId, s1.VertexId);            
-            root.AddEdge(s1.VertexId, v2.VertexId);
+            root.AddEdge(v1.VertexId, sv1.VertexId);
+            root.AddEdge(sv1.VertexId, sv2.VertexId);
+            //root.AddEdge(sv2.VertexId, v2.VertexId);
             MyCanvas.Graph = root;
             //var v = new BoBox.Controls.VertexControl() { Label = "Kuk svete", Background = Brushes.Aqua };
             //MyCanvas.Children.Add(v);

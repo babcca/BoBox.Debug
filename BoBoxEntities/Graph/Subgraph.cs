@@ -11,25 +11,12 @@ namespace BoBox.Graph
     using System.Diagnostics.Contracts;
 
     [DataContract]
-    public class Subgraph : ISubgraph, IHasParent<IVertex>, IParentGraph<IVertex>, ISourceTargetGraph<IVertex>, IType
+    public class Subgraph : ISubgraph, ISourceTargetGraph, IType
     {
         #region IVertex implementation
         
         private readonly IList<IVertex> edgesOut_ = new List<IVertex>();
-        private readonly IList<IVertex> edgesIn_ = new List<IVertex>();
-
-        private IGraph parentGraph_;
-        [IgnoreDataMember]
-        public IGraph ParentGraph
-        {
-            get
-            { return parentGraph_; }
-            set
-            {
-                parentGraph_ = value;
-                GraphDeep = value.GraphDeep + 1;
-            }
-        }
+        private readonly IList<IVertex> edgesIn_ = new List<IVertex>();        
 
         [IgnoreDataMember]
         public Int32 VertexId { get; private set; }
@@ -47,35 +34,28 @@ namespace BoBox.Graph
             get { return edgesIn_; }
         }
 
-        public void AddOutEdge(IVertex to)
+        public void AddOutEdge(IVertex targetVertex)
         {
-            edgesOut_.Add(to);
+            edgesOut_.Add(targetVertex);
         }
+        public void AddInEdge(IVertex sourceVertex)
+        {
+            edgesIn_.Add(sourceVertex);
+        }
+        public IParentGraph ParentGraph { get; set; }
         #endregion
 
         #region IGraph implementation
         private readonly IList<IVertex> vertices_ = new List<IVertex>();
-        private IVertex source_;
-        private IVertex target_;
+        private readonly IList<IVertex> sources_ = new List<IVertex>();
+        private readonly IList<IVertex> targets_= new List<IVertex>();
 
         [IgnoreDataMember]
         public Int32 GraphDeep { get; private set; }
         
         [IgnoreDataMember]
         public Int32 GraphId { get; private set; }   
-          
-        [IgnoreDataMember]
-        public IVertex Source
-        {
-            get { return source_; }
-        }
-
-        [IgnoreDataMember]
-        public IVertex Target
-        {
-            get { return target_; }
-        }
-
+                  
         [DataMember]
         public IEnumerable<IVertex> Vertices
         {
@@ -94,18 +74,7 @@ namespace BoBox.Graph
         {
             GraphDeep = 0;
             GraphId = Utils.IdGenerator.UniqueId;
-            VertexId = Utils.IdGenerator.UniqueId;
-            
-            var source = new Vertex();
-            source.GenerateVertexId();
-            source.ParentGraph = this;
-            source_ = source;
-
-            var target = new Vertex();
-            target.GenerateVertexId();
-            target.ParentGraph = this;
-            target_ = target;
-
+            VertexId = Utils.IdGenerator.UniqueId;                      
         }
         
         public void AddVertex(IVertex vertex)
@@ -115,57 +84,26 @@ namespace BoBox.Graph
             vertices_.Add(vertex);
         }
 
-        IParentGraph<IVertex> IHasParent<IVertex>.ParentGraph
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
 
         public IEnumerable<IVertex> Sources
         {
-            get { throw new NotImplementedException(); }
+            get { return sources_; }
         }
 
         public IEnumerable<IVertex> Targets
         {
-            get { throw new NotImplementedException(); }
+            get { return targets_; }
         }
 
         public void AddTargetVertex(IVertex source)
         {
-            throw new NotImplementedException();
+            sources_.Add(source);
         }
 
         public void AddSourceVertex(IVertex target)
         {
-            throw new NotImplementedException();
+            targets_.Add(target);
         }
-
-
-        IEnumerable<IVertex<IVertex>> IVertex<IVertex>.EdgesOut
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        IEnumerable<IVertex<IVertex>> IVertex<IVertex>.EdgesIn
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public void AddOutEdge(IVertex<IVertex> targetVertex)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddInEdge(IVertex<IVertex> sourceVertex)
-        {
-            throw new NotImplementedException();
-        }
+                                
     }
 }

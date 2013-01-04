@@ -10,7 +10,7 @@ namespace BoBox.Graph
     using BoBox.Graph.Interface;
 
     [DataContract]
-    public class Graph : IGraph, IParentGraph<IVertex>, IEdgesAndVerticesCollection
+    public class Graph : IGraph, IParentGraph, IEdgesAndVerticesCollection
     {
         private readonly IList<IEdge<IVertex>> edges_ = new List<IEdge<IVertex>>();
         private readonly IList<IVertex> vertices_ = new List<IVertex>();
@@ -145,9 +145,9 @@ namespace BoBox.Graph
             var target = edge.Destination;
             
             var previuosTarget = target;
-            IParentGraph<IVertex> parent = previuosTarget.ParentGraph;
-            
-                while ((parent is IHasParent<IVertex>) && (parent.GraphId != source.ParentGraph.GraphId))
+            IParentGraph parent = previuosTarget.ParentGraph;
+            // >[>[>]] jeste [[>]>]>
+            while ((parent is IHasParent) && (parent.GraphId != source.ParentGraph.GraphId))
                 {
                     var newIn = new Vertex();                      
                     parent.AddSourceVertex(newIn);
@@ -157,11 +157,12 @@ namespace BoBox.Graph
                     previuosTarget.AddInEdge(newIn);
 
                     previuosTarget = newIn;
-                    parent = (parent as IHasParent<IVertex>).ParentGraph;
+                   
+                    parent = (parent as IHasParent).ParentGraph;                    
                 }
                 
             
-            if (parent is IHasParent<IVertex>)
+            if (parent is IHasParent)
             {
                 // Jak poznat ze parent je samotny graf a ne podgraf?
                 var newOut = new Vertex();
@@ -230,49 +231,14 @@ namespace BoBox.Graph
             }
         }
 
-        int IParentGraph<IVertex>.GraphId
+
+
+        public IEnumerable<IVertex> Sources
         {
             get { throw new NotImplementedException(); }
         }
 
-        IList<IVertex> IParentGraph<IVertex>.Sources
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        IList<IVertex> IParentGraph<IVertex>.Targets
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        IParentGraph<IVertex> IParentGraph<IVertex>.ParentGraph
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        IVertex IParentGraph<IVertex>.NewTargetVertex()
-        {
-            throw new NotImplementedException();
-        }
-
-        IVertex IParentGraph<IVertex>.NewSourceVertex()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<IVertex> ISourceTargetGraph<IVertex>.Sources
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        IEnumerable<IVertex> ISourceTargetGraph<IVertex>.Targets
+        public IEnumerable<IVertex> Targets
         {
             get { throw new NotImplementedException(); }
         }
