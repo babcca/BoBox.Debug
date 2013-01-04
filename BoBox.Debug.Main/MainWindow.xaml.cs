@@ -44,7 +44,14 @@ namespace BoBox.Debug.Main
             root.AddEdge(v1.VertexId, sv1.VertexId);
             root.AddEdge(sv1.VertexId, sv2.VertexId);
             //root.AddEdge(sv2.VertexId, v2.VertexId);
-            MyCanvas.Graph = root;
+            try
+            {
+                MyCanvas.Graph = root;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
             //var v = new BoBox.Controls.VertexControl() { Label = "Kuk svete", Background = Brushes.Aqua };
             //MyCanvas.Children.Add(v);
             

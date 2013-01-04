@@ -23,21 +23,21 @@ namespace BoBox.Controls.Vertices
         public SubgraphControl(ISubgraph subgraph)
             : base((IVertex) subgraph)
         {
-            Graph = (IVerticesCollection)subgraph;
+            Graph = subgraph;
             Label = string.Format("subgraph {0}", Vertex.VertexId.ToString());
         }
         
         #region IGraph decorator
         #endregion
 
-        public IVerticesCollection Graph
+        public ISubgraph Graph
         {
-            get { return (IVerticesCollection)GetValue(GraphProperty); }
+            get { return (ISubgraph)GetValue(GraphProperty); }
             set { SetValue(GraphProperty, value); }
         }
 
         public static readonly DependencyProperty GraphProperty =
-            DependencyProperty.Register("Graph", typeof(IVerticesCollection), typeof(SubgraphControl), new UIPropertyMetadata(null));
+            DependencyProperty.Register("Graph", typeof(ISubgraph), typeof(SubgraphControl), new UIPropertyMetadata(null));
         
         public bool IsExpanded
         {

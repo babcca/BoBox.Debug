@@ -49,13 +49,20 @@ namespace BoBox.Graph
         private readonly IList<IVertex> vertices_ = new List<IVertex>();
         private readonly IList<IVertex> sources_ = new List<IVertex>();
         private readonly IList<IVertex> targets_= new List<IVertex>();
+        private readonly IVertex source_ = new Vertex();
+        private readonly IVertex target_ = new Vertex();
 
         [IgnoreDataMember]
         public Int32 GraphDeep { get; private set; }
         
         [IgnoreDataMember]
-        public Int32 GraphId { get; private set; }   
-                  
+        public Int32 GraphId { get; private set; }
+        
+        [IgnoreDataMember]
+        public IEnumerable<IVertex> AllVertices { get {
+            return new List<IVertex>();
+        } }                 
+
         [DataMember]
         public IEnumerable<IVertex> Vertices
         {

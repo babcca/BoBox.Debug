@@ -22,7 +22,7 @@ namespace BoBox.Graph.Interface
     public interface IHasParent
     {
         IParentGraph ParentGraph { get; set; }
-    }
+    }   
 
 
     public interface IGraph

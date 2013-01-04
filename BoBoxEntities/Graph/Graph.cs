@@ -10,11 +10,11 @@ namespace BoBox.Graph
     using BoBox.Graph.Interface;
 
     [DataContract]
-    public class Graph : IGraph, IParentGraph, IEdgesAndVerticesCollection
+    public class Graph : IParentGraph, IEdgesAndVerticesCollection
     {
         private readonly IList<IEdge<IVertex>> edges_ = new List<IEdge<IVertex>>();
         private readonly IList<IVertex> vertices_ = new List<IVertex>();
-        private IList<IVertex> verticesList_ = null;
+        private IList<IVertex> allVertices_ = null;
 
         private IVertex source_;
         private IVertex target_;
@@ -54,15 +54,15 @@ namespace BoBox.Graph
         }
 
         [IgnoreDataMember]
-        public IEnumerable<IVertex> VerticesList
+        public IEnumerable<IVertex> AllVertices
         {
             get 
             {
-                if (verticesList_ == null)
+                if (allVertices_ == null)
                 {
-                    verticesList_ = LinearizeVertices();
+                    allVertices_ = LinearizeVertices();
                 }
-                return verticesList_;
+                return allVertices_;
             }
         }
         
@@ -75,7 +75,7 @@ namespace BoBox.Graph
         [DataMember(Order=1)]
         public Int32 VerticesCount
         {
-            get { return VerticesList.Count(); }
+            get { return AllVertices.Count(); }
             set { Utils.IdGenerator.Seed = value + 10; }
         }
 
@@ -202,7 +202,7 @@ namespace BoBox.Graph
 
         public IVertex VerticesListSelector(Func<IEnumerable<IVertex>, IVertex> where)
         {
-            return where(VerticesList);
+            return where(AllVertices);
         }        
 
         public void BuildGraphStructure()

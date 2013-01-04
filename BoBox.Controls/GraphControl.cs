@@ -11,9 +11,14 @@ namespace BoBox.Controls
 {
     using BoBox.Graph.Interface;
 
-    public class LayoutControl : GraphLayout<BoBox.Graph.Interface.IVerticesCollection>
+    public class LayoutControl : GraphLayout<BoBox.Graph.Interface.ISubgraph>
     {
-
+        protected override void ComputeLayout()
+        {
+            //.Sources.Select(v => layout.VertexPositions[v].Y).mi
+	
+        }
+        
     }
 
     public class GraphControl : GraphLayout<BoBox.Graph.Graph>
@@ -55,7 +60,7 @@ namespace BoBox.Controls
         where TGraph : IVerticesCollection
     {
         private readonly IList<VertexControl> vertices = new List<VertexControl>();
-        private BoBox.Algorithms.ILayoutAlgorithm<TGraph> layout;
+        protected BoBox.Algorithms.ILayoutAlgorithm<TGraph> layout;
         
         #region Dependenci Property        
         public TGraph Graph
@@ -65,7 +70,7 @@ namespace BoBox.Controls
         }
 
         public static readonly DependencyProperty GraphProperty =
-            DependencyProperty.Register("Graph", typeof(TGraph), typeof(GraphLayout<TGraph>), new FrameworkPropertyMetadata(new Graph.Graph(), FrameworkPropertyMetadataOptions.AffectsRender, Graph_PropertyChanged));
+            DependencyProperty.Register("Graph", typeof(TGraph), typeof(GraphLayout<TGraph>), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender, Graph_PropertyChanged));
 
         protected static void Graph_PropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
@@ -126,7 +131,7 @@ namespace BoBox.Controls
                     Children.Add(control);
                 }                                
             }
-   
+           
             // Update layput
             OnUpdateLayout();
         }
@@ -135,11 +140,12 @@ namespace BoBox.Controls
         {
             // Recompute layout
             ComputeLayout();
+            UpdateLayout();
         }
 
-        private void ComputeLayout()
+        protected virtual void ComputeLayout()
         {
-            UpdateLayout();
+            
         }
         
         // http://msdn.microsoft.com/en-us/library/ms754152.aspx#Panels_custom_panel_elements

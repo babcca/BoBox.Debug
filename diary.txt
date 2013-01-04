@@ -14,4 +14,5 @@ Pro lepsi manipulaci je lepsi oddelit s, t, a drzet si cestu zvlast (muze byt pr
 + Vykreslovani az do prvniho uzavreneho uzlu po ceste.
 + Snadna identifikace hrany pro envelope.
 
-Na ulozeni casty je vhodny stack, jelikoz prochazim od t k s abych cestu urcil. (popripade pote reversnout)
+Na ulozeni casty je vhodny stack, jelikoz prochazim od t k s abych cestu urcil. (popripade pote reversnout).
+na vrcholu bude vrchol nasledujici po s.
